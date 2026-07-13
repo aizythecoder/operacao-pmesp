@@ -1,0 +1,306 @@
+/* ==========================
+   OPERAÇÃO PMESP
+   VERSÃO 0.1
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#0B0F19;
+    --card:#171E2E;
+    --green:#16C47F;
+    --green-dark:#0F9B63;
+
+    --white:#F5F7FA;
+    --gray:#A7B1C2;
+
+    --radius:18px;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--white);
+
+}
+
+/* Splash */
+
+#splash{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#0B0F19;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+    animation:fadeOut 2.8s forwards;
+
+}
+
+#splash h1{
+
+    font-size:34px;
+
+    letter-spacing:2px;
+
+}
+
+#splash p{
+
+    color:var(--gray);
+
+    margin-top:8px;
+
+}
+
+@keyframes fadeOut{
+
+0%{
+
+opacity:1;
+
+}
+
+80%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+}
+
+/* APP */
+
+#app{
+
+    width:100%;
+
+    max-width:430px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    padding:25px 18px 120px;
+
+}
+
+/* Cabeçalho */
+
+header{
+
+    margin-top:30px;
+
+}
+
+header h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+header p{
+
+    margin-top:12px;
+
+    color:var(--gray);
+
+    line-height:1.6;
+
+}
+
+/* Barra */
+
+.progressCard{
+
+    margin-top:30px;
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-radius:var(--radius);
+
+}
+
+.top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:12px;
+
+    background:#2C3448;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+#fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(90deg,var(--green),#34D399);
+
+    transition:.4s;
+
+}
+
+/* Missão */
+
+.mission{
+
+    margin-top:25px;
+
+}
+
+.mission h3{
+
+    margin-bottom:18px;
+
+}
+
+.task{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:var(--card);
+
+    padding:16px;
+
+    border-radius:var(--radius);
+
+    margin-bottom:14px;
+
+}
+
+.task input{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+.task label{
+
+    font-size:15px;
+
+}
+
+/* Navegação */
+
+nav{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:95%;
+
+    max-width:420px;
+
+    background:#151C2B;
+
+    border-radius:22px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    padding:14px 0;
+
+    box-shadow:0 0 35px rgba(0,0,0,.45);
+
+}
+
+nav button{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+nav button:hover{
+
+    transform:translateY(-3px);
+
+    color:var(--green);
+
+}
+
+/* iPhone */
+
+@media(max-width:430px){
+
+header h2{
+
+font-size:28px;
+
+}
+
+.task{
+
+padding:14px;
+
+}
+
+}

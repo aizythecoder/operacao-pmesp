@@ -4,9 +4,13 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Operação PMESP</title>
+
+    <meta name="theme-color" content="#0B0F19">
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -20,139 +24,151 @@
 
 <body>
 
-    <div class="app">
+<!-- Splash -->
 
-        <!-- Cabeçalho -->
+<div id="splash">
 
-        <header class="header">
+    <h1>OPERAÇÃO PMESP</h1>
 
-            <h1>Operação PMESP</h1>
+    <p>CENTRO DE OPERAÇÕES</p>
 
-            <p id="saudacao">Bom dia.</p>
+</div>
 
-        </header>
+<!-- APP -->
 
-        <!-- Barra de progresso -->
+<div id="app">
 
-        <section class="progress-card">
+<header>
 
-            <div class="progress-info">
+<h2 id="dayCounter">DIA 001</h2>
 
-                <span>Meta do Dia</span>
+<p id="quote"></p>
 
-                <span id="porcentagem">0%</span>
+</header>
 
-            </div>
+<section class="progressCard">
 
-            <div class="progress">
+<div class="top">
 
-                <div class="progress-fill" id="barra"></div>
+<span>MISSÃO DO DIA</span>
 
-            </div>
+<span id="percent">0%</span>
 
-        </section>
+</div>
 
-        <!-- Menu -->
+<div class="progress">
 
-        <section class="menu">
+<div id="fill"></div>
 
-            <button class="card">
-                📅
-                <span>Rotina</span>
-            </button>
+</div>
 
-            <button class="card">
-                📚
-                <span>Estudos</span>
-            </button>
+</section>
 
-            <button class="card">
-                🏃
-                <span>Treinos</span>
-            </button>
+<section class="mission">
 
-            <button class="card">
-                ✍️
-                <span>Redação</span>
-            </button>
+<h3>Objetivos</h3>
 
-            <button class="card">
-                📝
-                <span>Simulado</span>
-            </button>
+<div class="task">
 
-            <button class="card">
-                📊
-                <span>Relatórios</span>
-            </button>
+<input type="checkbox">
 
-        </section>
+<label>Acordar às 06:00</label>
 
-        <!-- Missão do Dia -->
+</div>
 
-        <section class="today">
+<div class="task">
 
-            <h2>Missão de Hoje</h2>
+<input type="checkbox">
 
-            <div class="task">
+<label>Corrida da manhã</label>
 
-                <input type="checkbox">
+</div>
 
-                <label>Acordar às 06:00</label>
+<div class="task">
 
-            </div>
+<input type="checkbox">
 
-            <div class="task">
+<label>Exercícios físicos</label>
 
-                <input type="checkbox">
+</div>
 
-                <label>Corrida da manhã</label>
+<div class="task">
 
-            </div>
+<input type="checkbox">
 
-            <div class="task">
+<label>Estudar até 13:00</label>
 
-                <input type="checkbox">
+</div>
 
-                <label>Português</label>
+<div class="task">
 
-            </div>
+<input type="checkbox">
 
-            <div class="task">
+<label>Corrida da tarde</label>
 
-                <input type="checkbox">
+</div>
 
-                <label>Matemática</label>
+<div class="task">
 
-            </div>
+<input type="checkbox">
 
-            <div class="task">
+<label>Estudar até 19:00</label>
 
-                <input type="checkbox">
+</div>
 
-                <label>Atualidades</label>
+<div class="task">
 
-            </div>
+<input type="checkbox">
 
-        </section>
+<label>Redação</label>
 
-        <!-- Navegação inferior -->
+</div>
 
-        <nav class="bottom-nav">
+<div class="task">
 
-            <button>🏠</button>
+<input type="checkbox">
 
-            <button>📚</button>
+<label>Dormir às 22:00</label>
 
-            <button class="center">+</button>
+</div>
 
-            <button>📊</button>
+</section>
 
-            <button>⚙️</button>
+<nav>
 
-        </nav>
+<button>
 
-    </div>
+🏠
+
+</button>
+
+<button>
+
+📚
+
+</button>
+
+<button>
+
+🎯
+
+</button>
+
+<button>
+
+📊
+
+</button>
+
+<button>
+
+⚙️
+
+</button>
+
+</nav>
+
+</div>
 
 <script src="js/script.js"></script>
 
