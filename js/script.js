@@ -536,4 +536,264 @@ window.addEventListener("load",()=>{
 
     atualizarPainel();
 
+});/*==================================================
+ SISTEMA DE DIAS E SEQUÊNCIA
+==================================================*/
+
+const DATA_KEY = "operacao-pmesp-data";
+
+function dataHoje(){
+
+    const hoje = new Date();
+
+    return hoje.toISOString().split("T")[0];
+
+}
+
+function verificarNovoDia(){
+
+    const ultimaData = localStorage.getItem(DATA_KEY);
+
+    const hoje = dataHoje();
+
+    if(!ultimaData){
+
+        localStorage.setItem(DATA_KEY, hoje);
+
+        atualizarContadorDias();
+
+        return;
+
+    }
+
+    if(ultimaData !== hoje){
+
+        localStorage.setItem(DATA_KEY, hoje);
+
+        resetarDia();
+
+    }
+
+    atualizarContadorDias();
+
+}
+
+function atualizarContadorDias(){
+
+    const inicio = new Date("2026-01-01");
+
+    const hoje = new Date();
+
+    const diferenca = hoje - inicio;
+
+    const dias = Math.floor(diferenca / 86400000) + 1;
+
+    const contador = document.getElementById("dayCounter");
+
+    if(contador){
+
+        contador.textContent =
+        "DIA " + String(dias).padStart(3,"0");
+
+    }
+
+}
+
+function resetarDia(){
+
+    document.querySelectorAll(".task").forEach(check=>{
+
+        check.checked=false;
+
+    });
+
+    salvar();
+
+    atualizarPainel();
+
+}
+
+/*==================================================
+ CONQUISTA DO DIA
+==================================================*/
+
+function verificarConclusao(){
+
+    const total=document.querySelectorAll(".task").length;
+
+    const feitas=document.querySelectorAll(".task:checked").length;
+
+    if(total===0) return;
+
+    if(feitas===total){
+
+        mostrarMensagemConclusao();
+
+    }
+
+}
+
+function mostrarMensagemConclusao(){
+
+    if(localStorage.getItem("missao-concluida")==dataHoje()){
+
+        return;
+
+    }
+
+    localStorage.setItem("missao-concluida",dataHoje());
+
+    setTimeout(()=>{
+
+        alert(
+`MISSÃO CONCLUÍDA!
+
+Você cumpriu todas as tarefas de hoje.
+
+Continue assim.
+
+Amanhã começa outra batalha.`
+        );
+
+    },400);
+
+}
+
+/*==================================================
+ EVENTOS
+==================================================*/
+
+document.addEventListener("change",()=>{
+
+    verificarConclusao();
+
+});
+
+window.addEventListener("load",()=>{
+
+    verificarNovoDia();
+
+});/*==================================================
+ SISTEMA DE XP, NÍVEL E PATENTES
+==================================================*/
+
+const PATENTES = [
+    { nome: "Recruta", xp: 0 },
+    { nome: "Soldado", xp: 250 },
+    { nome: "Cabo", xp: 600 },
+    { nome: "3º Sargento", xp: 1000 },
+    { nome: "2º Sargento", xp: 1500 },
+    { nome: "1º Sargento", xp: 2200 },
+    { nome: "Subtenente", xp: 3000 },
+    { nome: "Aspirante", xp: 4000 },
+    { nome: "Tenente", xp: 5500 },
+    { nome: "Capitão", xp: 7000 },
+    { nome: "Major", xp: 9000 },
+    { nome: "Coronel", xp: 12000 }
+];
+
+function obterXP(){
+
+    return Number(localStorage.getItem("xp-total") || 0);
+
+}
+
+function definirXP(valor){
+
+    localStorage.setItem("xp-total", valor);
+
+}
+
+function adicionarXP(valor){
+
+    const atual = obterXP();
+
+    definirXP(atual + valor);
+
+    atualizarPatente();
+
+}
+
+function calcularPatente(xp){
+
+    let atual = PATENTES[0];
+
+    PATENTES.forEach(p=>{
+
+        if(xp >= p.xp){
+
+            atual = p;
+
+        }
+
+    });
+
+    return atual;
+
+}
+
+function atualizarPatente(){
+
+    const xp = obterXP();
+
+    const patente = calcularPatente(xp);
+
+    const xpTopo = document.getElementById("xp");
+
+    if(xpTopo){
+
+        xpTopo.textContent = xp;
+
+    }
+
+    const xpRelatorio = document.getElementById("xpTotal");
+
+    if(xpRelatorio){
+
+        xpRelatorio.textContent = xp;
+
+    }
+
+    console.log("Patente:", patente.nome);
+
+}
+
+/*==================================================
+ GANHAR XP
+==================================================*/
+
+function premiarDia(){
+
+    const total=document.querySelectorAll(".task").length;
+
+    const feitas=document.querySelectorAll(".task:checked").length;
+
+    if(total===0) return;
+
+    if(feitas===total){
+
+        if(localStorage.getItem("xp-dia")==dataHoje()){
+
+            return;
+
+        }
+
+        localStorage.setItem("xp-dia",dataHoje());
+
+        adicionarXP(100);
+
+    }
+
+}
+
+document.addEventListener("change",()=>{
+
+    premiarDia();
+
+});
+
+window.addEventListener("load",()=>{
+
+    atualizarPatente();
+
 });
