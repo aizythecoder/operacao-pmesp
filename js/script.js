@@ -1,71 +1,160 @@
-/* ==========================
-   OPERAÇÃO PMESP
-   VERSÃO 0.1
-========================== */
+/*==================================================
+ OPERAÇÃO PMESP
+ VERSÃO 1.0
+==================================================*/
 
-const quotes = [
-"Enquanto você pensa em desistir, alguém está estudando para conquistar a vaga.",
-"A disciplina faz hoje o que o arrependimento tentará explicar amanhã.",
-"O edital não sabe que você está cansado.",
-"Você não precisa ser perfeito. Precisa ser constante.",
-"Todo dia perdido aumenta o trabalho do dia seguinte.",
-"A aprovação é construída nas pequenas escolhas repetidas diariamente.",
-"Quem mantém a rotina quando ninguém está olhando chega mais longe.",
-"Hoje é mais uma oportunidade para diminuir a distância até a farda."
+document.addEventListener("DOMContentLoaded", iniciarApp);
+
+function iniciarApp(){
+
+    esconderSplash();
+
+    carregarFrase();
+
+    configurarCards();
+
+    configurarCheckboxes();
+
+    configurarCampos();
+
+    atualizarProgresso();
+
+}
+
+/*==================================================
+ SPLASH
+==================================================*/
+
+function esconderSplash(){
+
+    const splash = document.getElementById("splash");
+
+    if(!splash) return;
+
+    setTimeout(()=>{
+
+        splash.style.display="none";
+
+    },3000);
+
+}
+
+/*==================================================
+ FRASES
+==================================================*/
+
+const frases=[
+
+"O conforto é o inimigo da aprovação.",
+
+"Enquanto você descansa alguém resolve mais 100 questões.",
+
+"Dor é temporária. A farda é permanente.",
+
+"Você pediu uma vida diferente. Trabalhe por ela.",
+
+"Disciplina vence talento.",
+
+"Sem desculpas.",
+
+"Hoje é obrigatório evoluir.",
+
+"Seu concorrente estudou enquanto você pensava em desistir.",
+
+"Não negocie com a preguiça.",
+
+"Você só perde quando para."
+
 ];
 
-const quote = document.getElementById("quote");
-const tasks = document.querySelectorAll(".task input");
-const fill = document.getElementById("fill");
-const percent = document.getElementById("percent");
+function carregarFrase(){
 
-// Frase do dia
-const dayIndex = new Date().getDay();
-quote.textContent = quotes[dayIndex];
+    const quote=document.getElementById("quote");
 
-// Carregar progresso salvo
-tasks.forEach((task, index) => {
-    const saved = localStorage.getItem(`task_${index}`);
-    if (saved === "true") {
-        task.checked = true;
-    }
+    if(!quote) return;
 
-    task.addEventListener("change", () => {
-        localStorage.setItem(`task_${index}`, task.checked);
-        updateProgress();
-    });
-});
+    const dia=new Date().getDate();
 
-function updateProgress() {
-    let completed = 0;
+    quote.textContent=frases[dia % frases.length];
 
-    tasks.forEach(task => {
-        if (task.checked) completed++;
-    });
-
-    const progress = Math.round((completed / tasks.length) * 100);
-
-    fill.style.width = progress + "%";
-    percent.textContent = progress + "%";
 }
 
-updateProgress();
+/*==================================================
+ ABRIR E FECHAR MISSÕES
+==================================================*/
 
-// Contador de dias
-const dayCounter = document.getElementById("dayCounter");
+function configurarCards(){
 
-const startDateKey = "operationStartDate";
+    const cards=document.querySelectorAll(".mission-card");
 
-let startDate = localStorage.getItem(startDateKey);
+    cards.forEach(card=>{
 
-if (!startDate) {
-    startDate = new Date().toISOString();
-    localStorage.setItem(startDateKey, startDate);
+        const botao=card.querySelector(".mission-header");
+
+        botao.addEventListener("click",()=>{
+
+            card.classList.toggle("open");
+
+        });
+
+    });
+
 }
 
-const diff = Math.floor(
-    (new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24)
-);
+/*==================================================
+ LOCAL STORAGE
+==================================================*/
 
-dayCounter.textContent =
-    "DIA " + String(diff + 1).padStart(3, "0");
+function salvar(){
+
+    const dados={
+
+        checks:{},
+
+        inputs:{}
+
+    };
+
+    document.querySelectorAll(".task").forEach((check,index)=>{
+
+        dados.checks[index]=check.checked;
+
+    });
+
+    document.querySelectorAll("input[type='time'],input[type='number'],input[type='text'],textarea").forEach((campo,index)=>{
+
+        dados.inputs[index]=campo.value;
+
+    });
+
+    localStorage.setItem("operacao-pmesp",JSON.stringify(dados));
+
+}
+
+function carregar(){
+
+    const dados=JSON.parse(localStorage.getItem("operacao-pmesp"));
+
+    if(!dados) return;
+
+    document.querySelectorAll(".task").forEach((check,index)=>{
+
+        if(dados.checks[index]!==undefined){
+
+            check.checked=dados.checks[index];
+
+        }
+
+    });
+
+    document.querySelectorAll("input[type='time'],input[type='number'],input[type='text'],textarea").forEach((campo,index)=>{
+
+        if(dados.inputs[index]!==undefined){
+
+            campo.value=dados.inputs[index];
+
+        }
+
+    });
+
+}
