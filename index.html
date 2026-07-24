@@ -2,551 +2,334 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Operação PMESP</title>
-
     <meta name="theme-color" content="#0B0F19">
-
     <meta name="apple-mobile-web-app-capable" content="yes">
-
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
     <meta name="apple-mobile-web-app-title" content="Operação PMESP">
 
     <link rel="manifest" href="manifest.json">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
 <!-- SPLASH -->
-
 <div id="splash">
-
     <div class="logo">
-
         <h1>OPERAÇÃO PMESP</h1>
-
         <p>CENTRO DE OPERAÇÕES</p>
-
     </div>
-
     <div class="loading">
-
         <div class="loading-bar">
-
             <div class="loading-fill"></div>
-
         </div>
-
         <span>Inicializando...</span>
-
     </div>
-
 </div>
 
 <!-- APP -->
-
 <div id="app">
 
 <header>
-
-<div>
-
-<h3 id="dayCounter">DIA 001</h3>
-
-<p id="quote"></p>
-
-</div>
-
-<div id="xpBox">
-
-<span>XP</span>
-
-<strong id="xpValue">0</strong>
-
-</div>
-
+    <div>
+        <h3 id="dayCounter">DIA 001</h3>
+        <p id="quote"></p>
+    </div>
+    <div id="xpBox">
+        <span>XP</span>
+        <strong id="xpValue">0</strong>
+    </div>
 </header>
 
 <section class="progress-card">
-
-<div class="progress-top">
-
-<h2>MISSÃO DO DIA</h2>
-
-<span id="progressText">0%</span>
-
-</div>
-
-<div class="progress">
-
-<div id="progressFill"></div>
-
-</div>
-
+    <div class="progress-top">
+        <h2>MISSÃO DO DIA</h2>
+        <span id="progressText">0%</span>
+    </div>
+    <div class="progress">
+        <div id="progressFill"></div>
+    </div>
 </section>
 
 <section class="missions">
+    <h2>MISSÕES</h2>
 
-<h2>MISSÕES</h2><!-- PREPARAÇÃO -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>🌅 PREPARAÇÃO</h3>
-
-            <span>06:00</span>
-
+    <!-- PREPARAÇÃO -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>🌅 PREPARAÇÃO</h3>
+                <span>06:00</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <label><input type="checkbox" class="task"> Levantar às 06:00</label>
+            <label><input type="checkbox" class="task"> Arrumar a cama</label>
+            <label><input type="checkbox" class="task"> Escovar os dentes</label>
+            <label><input type="checkbox" class="task"> Tomar café</label>
+            <label><input type="checkbox" class="task"> Beber 500ml de água</label>
+            <div class="field">
+                <label>Hora executada</label>
+                <input type="time">
+            </div>
+            <div class="field">
+                <label>Observações</label>
+                <textarea placeholder="Escreva algo..."></textarea>
+            </div>
         </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <label><input type="checkbox" class="task"> Levantar às 06:00</label>
-
-        <label><input type="checkbox" class="task"> Arrumar a cama</label>
-
-        <label><input type="checkbox" class="task"> Escovar os dentes</label>
-
-        <label><input type="checkbox" class="task"> Tomar café</label>
-
-        <label><input type="checkbox" class="task"> Beber 500ml de água</label>
-
-        <div class="field">
-
-            <label>Hora executada</label>
-
-            <input type="time">
-
-        </div>
-
-        <div class="field">
-
-            <label>Observações</label>
-
-            <textarea placeholder="Escreva algo..."></textarea>
-
-        </div>
-
     </div>
 
-</div>
-
-<!-- CORRIDA -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>🏃 CORRIDA</h3>
-
-            <span>06:30</span>
-
+    <!-- CORRIDA -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>🏃 CORRIDA</h3>
+                <span>06:30</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <label><input type="checkbox" class="task"> Alongamento</label>
+            <label><input type="checkbox" class="task"> Correr 5 km</label>
+            <label><input type="checkbox" class="task"> Caminhada</label>
+            <label><input type="checkbox" class="task"> Registrar tempo</label>
+            <div class="field">
+                <label>Hora executada</label>
+                <input type="time">
+            </div>
+            <div class="field">
+                <label>Tempo da corrida</label>
+                <input type="text" placeholder="00:30:15">
+            </div>
+            <div class="field">
+                <label>Observações</label>
+                <textarea placeholder="Como foi a corrida?"></textarea>
+            </div>
         </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <label><input type="checkbox" class="task"> Alongamento</label>
-
-        <label><input type="checkbox" class="task"> Correr 5 km</label>
-
-        <label><input type="checkbox" class="task"> Caminhada</label>
-
-        <label><input type="checkbox" class="task"> Registrar tempo</label>
-
-        <div class="field">
-
-            <label>Hora executada</label>
-
-            <input type="time">
-
-        </div>
-
-        <div class="field">
-
-            <label>Tempo da corrida</label>
-
-            <input type="text" placeholder="00:30:15">
-
-        </div>
-
-        <div class="field">
-
-            <label>Observações</label>
-
-            <textarea placeholder="Como foi a corrida?"></textarea>
-
-        </div>
-
     </div>
 
-</div>
-
-<!-- EXERCÍCIOS -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>💪 EXERCÍCIOS</h3>
-
-            <span>07:00</span>
-
+    <!-- EXERCÍCIOS -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>💪 EXERCÍCIOS</h3>
+                <span>07:00</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <label><input type="checkbox" class="task"> Aquecimento</label>
+            <label><input type="checkbox" class="task"> Flexões</label>
+            <label><input type="checkbox" class="task"> Barras</label>
+            <label><input type="checkbox" class="task"> Abdominais</label>
+            <label><input type="checkbox" class="task"> Agachamentos</label>
+            <label><input type="checkbox" class="task"> Prancha</label>
+            <label><input type="checkbox" class="task"> Alongamento final</label>
+            <div class="field">
+                <label>Hora executada</label>
+                <input type="time">
+            </div>
+            <div class="field">
+                <label>Observações</label>
+                <textarea placeholder="Anote seu desempenho"></textarea>
+            </div>
         </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <label><input type="checkbox" class="task"> Aquecimento</label>
-
-        <label><input type="checkbox" class="task"> Flexões</label>
-
-        <label><input type="checkbox" class="task"> Barras</label>
-
-        <label><input type="checkbox" class="task"> Abdominais</label>
-
-        <label><input type="checkbox" class="task"> Agachamentos</label>
-
-        <label><input type="checkbox" class="task"> Prancha</label>
-
-        <label><input type="checkbox" class="task"> Alongamento final</label>
-
-        <div class="field">
-
-            <label>Hora executada</label>
-
-            <input type="time">
-
-        </div>
-
-        <div class="field">
-
-            <label>Observações</label>
-
-            <textarea placeholder="Anote seu desempenho"></textarea>
-
-        </div>
-
     </div>
 
-</div><!-- ESTUDO DA MANHÃ -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>📚 ESTUDO DA MANHÃ</h3>
-
-            <span>08:00 - 13:00</span>
-
+    <!-- ESTUDO DA MANHÃ -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>📚 ESTUDO DA MANHÃ</h3>
+                <span>08:00 - 13:00</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <div class="field">
+                <label>Português (horas)</label>
+                <input id="portugues" type="number" min="0" step="0.5" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Matematica (horas)</label>
+                <input id="matematica" type="number" min="0" step="0.5" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Informática (horas)</label>
+                <input id="informatica" type="number" min="0" step="0.5" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Direito Constitucional (horas)</label>
+                <input id="constitucional" type="number" min="0" step="0.5" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Legislação PMESP (horas)</label>
+                <input id="legislacao" type="number" min="0" step="0.5" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Total de questões resolvidas</label>
+                <input id="questoes" type="number" min="0" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Observações</label>
+                <textarea id="observacoes" rows="4"></textarea>
+            </div>
+            <div class="study-total">
+                <h3>Total estudado hoje</h3>
+                <span id="totalHoras">0 horas</span>
+            </div>
+            <button class="save-study" id="salvarEstudo">
+                💾 Salvar progresso
+            </button>
         </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-    <div class="field">
-        <label>Português (horas)</label>
-        <input id="portugues" type="number" min="0" step="0.5" placeholder="0">
     </div>
 
-    <div class="field">
-        <label>Matemática (horas)</label>
-        <input id="matematica" type="number" min="0" step="0.5" placeholder="0">
+    <!-- CORRIDA DA TARDE -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>🏃 CORRIDA DA TARDE</h3>
+                <span>13:30</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <label><input type="checkbox" class="task"> Alongamento</label>
+            <label><input type="checkbox" class="task"> Correr 5 km</label>
+            <label><input type="checkbox" class="task"> Caminhada</label>
+            <label><input type="checkbox" class="task"> Registrar tempo</label>
+            <div class="field">
+                <label>Hora executada</label>
+                <input type="time">
+            </div>
+        </div>
     </div>
 
-    <div class="field">
-        <label>Informática (horas)</label>
-        <input id="informatica" type="number" min="0" step="0.5" placeholder="0">
+    <!-- ESTUDO DA TARDE -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>📚 ESTUDO DA TARDE</h3>
+                <span>14:10 - 19:00</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <div class="field">
+                <label>Matérias estudadas</label>
+                <textarea placeholder="Ex.: Atualidades, História, Geografia..."></textarea>
+            </div>
+            <div class="field">
+                <label>Horas estudadas</label>
+                <input type="number" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Questões resolvidas</label>
+                <input type="number" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Acertos</label>
+                <input type="number" placeholder="0">
+            </div>
+            <div class="field">
+                <label>Erros</label>
+                <input type="number" placeholder="0">
+            </div>
+        </div>
     </div>
 
-    <div class="field">
-        <label>Direito Constitucional (horas)</label>
-        <input id="constitucional" type="number" min="0" step="0.5" placeholder="0">
+    <!-- REDAÇÃO -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>✍️ REDAÇÃO</h3>
+                <span>Final do dia</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <div class="field">
+                <label>Tema</label>
+                <input type="text">
+            </div>
+            <div class="field">
+                <label>O que você escreveu hoje?</label>
+                <textarea rows="8"></textarea>
+            </div>
+        </div>
     </div>
 
-    <div class="field">
-        <label>Legislação PMESP (horas)</label>
-        <input id="legislacao" type="number" min="0" step="0.5" placeholder="0">
+    <!-- ENCERRAMENTO -->
+    <div class="mission-card">
+        <button class="mission-header">
+            <div>
+                <h3>🌙 ENCERRAMENTO</h3>
+                <span>22:00</span>
+            </div>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="mission-body">
+            <label><input type="checkbox" class="task"> Preparar roupa</label>
+            <label><input type="checkbox" class="task"> Preparar materiais</label>
+            <label><input type="checkbox" class="task"> Revisar metas do dia</label>
+            <label><input type="checkbox" class="task"> Dormir às 22:00</label>
+        </div>
     </div>
 
-    <div class="field">
-        <label>Total de questões resolvidas</label>
-        <input id="questoes" type="number" min="0" placeholder="0">
-    </div>
-
-    <div class="field">
-        <label>Observações</label>
-        <textarea id="observacoes" rows="4"></textarea>
-    </div>
-
-    <div class="study-total">
-        <h3>Total estudado hoje</h3>
-        <span id="totalHoras">0 horas</span>
-    </div>
-
-    <button class="save-study" id="salvarEstudo">
-        💾 Salvar progresso
-    </button>
-
-</div>
-
-<!-- CORRIDA DA TARDE -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>🏃 CORRIDA DA TARDE</h3>
-
-            <span>13:30</span>
-
+    <!-- RELATÓRIO DO DIA -->
+    <section class="report-card">
+        <h2>📊 RELATÓRIO DO DIA</h2>
+        <div class="report-grid">
+            <div class="report-item">
+                <span>Missões</span>
+                <strong id="missionsDone">0/0</strong>
+            </div>
+            <div class="report-item">
+                <span>Horas Estudadas</span>
+                <strong id="studyHours">0h</strong>
+            </div>
+            <div class="report-item">
+                <span>Questões</span>
+                <strong id="questionsDone">0</strong>
+            </div>
+            <div class="report-item">
+                <span>XP</span>
+                <strong id="xpTotal">0</strong>
+            </div>
         </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <label><input type="checkbox" class="task"> Alongamento</label>
-
-        <label><input type="checkbox" class="task"> Correr 5 km</label>
-
-        <label><input type="checkbox" class="task"> Caminhada</label>
-
-        <label><input type="checkbox" class="task"> Registrar tempo</label>
-
-        <div class="field">
-
-            <label>Hora executada</label>
-
-            <input type="time">
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- ESTUDO DA TARDE -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>📚 ESTUDO DA TARDE</h3>
-
-            <span>14:10 - 19:00</span>
-
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <div class="field">
-            <label>Matérias estudadas</label>
-            <textarea placeholder="Ex.: Atualidades, História, Geografia..."></textarea>
-        </div>
-
-        <div class="field">
-            <label>Horas estudadas</label>
-            <input type="number" placeholder="0">
-        </div>
-
-        <div class="field">
-            <label>Questões resolvidas</label>
-            <input type="number" placeholder="0">
-        </div>
-
-        <div class="field">
-            <label>Acertos</label>
-            <input type="number" placeholder="0">
-        </div>
-
-        <div class="field">
-            <label>Erros</label>
-            <input type="number" placeholder="0">
-        </div>
-
-    </div>
-
-</div>
-
-<!-- REDAÇÃO -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>✍️ REDAÇÃO</h3>
-
-            <span>Final do dia</span>
-
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <div class="field">
-            <label>Tema</label>
-            <input type="text">
-        </div>
-
-        <div class="field">
-            <label>O que você escreveu hoje?</label>
-            <textarea rows="8"></textarea>
-        </div>
-
-    </div>
-
-</div>
-
-<!-- ENCERRAMENTO -->
-
-<div class="mission-card">
-
-    <button class="mission-header">
-
-        <div>
-
-            <h3>🌙 ENCERRAMENTO</h3>
-
-            <span>22:00</span>
-
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="mission-body">
-
-        <label><input type="checkbox" class="task"> Preparar roupa</label>
-
-        <label><input type="checkbox" class="task"> Preparar materiais</label>
-
-        <label><input type="checkbox" class="task"> Revisar metas do dia</label>
-
-        <label><input type="checkbox" class="task"> Dormir às 22:00</label>
-
-    </div>
-
-</div><!-- RELATÓRIO DO DIA -->
-
-<section class="report-card">
-
-    <h2>📊 RELATÓRIO DO DIA</h2>
-
-    <div class="report-grid">
-
-        <div class="report-item">
-            <span>Missões</span>
-            <strong id="missionsDone">0/7</strong>
-        </div>
-
-        <div class="report-item">
-            <span>Horas Estudadas</span>
-            <strong id="studyHours">0h</strong>
-        </div>
-
-        <div class="report-item">
-            <span>Questões</span>
-            <strong id="questionsDone">0</strong>
-        </div>
-
-        <div class="report-item">
-            <span>XP</span>
-            <strong id="xpTotal">0</strong>
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 </section>
 
 <!-- MENU INFERIOR -->
-
 <nav class="bottom-nav">
-
-<button class="active">
-🏠
-<p>Início</p>
-</button>
-
-<button>
-📚
-<p>Estudos</p>
-</button>
-
-<button>
-🏃
-<p>Treino</p>
-</button>
-
-<button>
-📊
-<p>Relatório</p>
-</button>
-
-<button>
-⚙️
-<p>Config.</p>
-</button>
-
+    <button class="active">
+        🏠
+        <p>Início</p>
+    </button>
+    <button>
+        📚
+        <p>Estudos</p>
+    </button>
+    <button>
+        🏃
+        <p>Treino</p>
+    </button>
+    <button>
+        📊
+        <p>Relatório</p>
+    </button>
 </nav>
 
 </div>
 
 <script src="js/script.js"></script>
-
 </body>
 </html>
