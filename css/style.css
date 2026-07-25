@@ -2,7 +2,6 @@
    OPERAÇÃO PMESP - V1.0 (OFFICIAL CSS)
 ===================================== */
 
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +19,6 @@ body {
     overflow-x: hidden;
 }
 
-/* VARIÁVEIS DE CORES */
 :root {
     --background: #0B0F19;
     --background2: #111827;
@@ -36,7 +34,6 @@ body {
     --radius: 20px;
 }
 
-/* APP CONTAINER */
 #app {
     width: 100%;
     max-width: 430px;
@@ -148,6 +145,27 @@ header {
     color: var(--green);
 }
 
+/* SISTEMA DE ABAS (TABS) */
+.tab-content {
+    display: none;
+    animation: fadeInTab 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeInTab {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* PROGRESSO DO DIA */
 .progress-card {
     background: var(--card);
@@ -188,17 +206,6 @@ header {
     background: linear-gradient(90deg, #16C47F, #34D399);
     transition: width 0.4s ease;
     position: relative;
-}
-
-#progressFill::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 30px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.25);
-    filter: blur(6px);
 }
 
 /* MISSÕES */
@@ -257,7 +264,6 @@ header {
     transition: 0.35s;
 }
 
-/* CONTEÚDO EXPANSÍVEL DOS CARDS */
 .mission-body {
     display: none;
     padding: 0 20px 20px;
@@ -283,7 +289,6 @@ header {
     }
 }
 
-/* CHECKLIST & CHECKBOXES */
 .mission-body label {
     display: flex;
     align-items: center;
@@ -303,11 +308,19 @@ header {
     transition: 0.2s;
 }
 
-.task:hover {
-    transform: scale(1.25);
+/* INPUTS E ESTUDOS */
+.study-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
 }
 
-/* CAMPOS DE TEXTO E INPUTS */
+.study-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
 .field {
     margin-top: 18px;
 }
@@ -345,11 +358,6 @@ header {
     box-shadow: 0 0 0 3px rgba(22, 196, 127, 0.15);
 }
 
-::placeholder {
-    color: #6B7280;
-}
-
-/* BLOCO DE ESTUDOS (RESUMO E BOTÃO SALVAR) */
 .study-total {
     margin-top: 20px;
     padding: 15px;
@@ -392,7 +400,6 @@ header {
 
 /* RELATÓRIO DO DIA */
 .report-card {
-    margin-top: 30px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -420,11 +427,6 @@ header {
     transition: 0.3s;
 }
 
-.report-item:hover {
-    transform: translateY(-3px);
-    border-color: var(--green);
-}
-
 .report-item span {
     display: block;
     color: var(--gray);
@@ -435,6 +437,23 @@ header {
 .report-item strong {
     font-size: 24px;
     color: var(--white);
+}
+
+.rank {
+    background: var(--background2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.rank h4 {
+    font-size: 18px;
+    color: var(--green);
+}
+
+.rank span {
+    color: var(--gray);
+    font-size: 14px;
 }
 
 /* MENU INFERIOR FIXO */
@@ -483,25 +502,14 @@ header {
     color: var(--green);
 }
 
-/* SCROLLBAR CUSTOMIZADA */
-::-webkit-scrollbar {
-    width: 8px;
+.text-center {
+    text-align: center;
 }
 
-::-webkit-scrollbar-track {
-    background: #0B0F19;
+.mt20 {
+    margin-top: 20px;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #2B364D;
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--green);
-}
-
-/* MEDIA QUERIES (MOBILE) */
 @media(max-width: 430px) {
     #app {
         padding: 18px;
@@ -514,9 +522,5 @@ header {
 
     .logo h1 {
         font-size: 28px;
-    }
-
-    .report-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }

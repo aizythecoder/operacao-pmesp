@@ -1,10 +1,47 @@
-/*==================================================
- OPERAÇÃO PMESP - VERSÃO 1.0 (DESBUGADO)
-==================================================*/
+/* =====================================
+   OPERAÇÃO PMESP - V1.0 (OFFICIAL JS)
+===================================== */
 
-document.addEventListener("DOMContentLoaded", iniciarApp);
+const FRASES = [
+    "Senta a porra da bunda na cadeira e estuda, caralho!",
+    "Larga essa bosta de celular e vai ler o edital, bisonho!",
+    "Tá com preguiça, seu arrombado? A concorrência tá te engolindo!",
+    "Para de choro e paga essa porra dessa flexão!",
+    "Quer farda ou quer continuar sendo essa vergonha aí?",
+    "A prova caga pro seu cansaço, seu frouxo! Estuda!",
+    "Levanta essa carcaça podre e vai pagar o TAF!",
+    "Sei que tá doendo, porra! Faz mais uma e para de mimimi!",
+    "Sua família tá esperando tua posse ou teu fracasso, caralho?",
+    "Acha bonito ser um bosta sem futuro? Reage, porra!",
+    "Caiu na questão? Burro! Anota e aprende essa bosta!",
+    "Vai tomar no cu e vai estudar! O edital não espera!",
+    "Para de dar desculpa de corno e bate a meta diária!",
+    "O conforto é pra fraco! Aqui é faca na caveira, porra!",
+    "Tá cansado? Danisse! Cansado e desempregado é pior!",
+    "Sua preguiça é uma vergonha! Toma vergonha nessa cara!",
+    "Quer moleza, seu frouxo? Vai mastigar água então!",
+    "Mais um dia sendo medíocre? Muda essa merda hoje!",
+    "Engole o choro, caralho! A rua não tem dó de bisonho!",
+    "Tá olhando pro teto por quê? Abre a porra do livro!",
+    "A concorrência comemora cada minuto que você caga pro estudo!",
+    "Bate essa meta de hoje ou nem encosta na cama, porra!",
+    "Mente fraca do caralho! Reage e faz acontecer!",
+    "Vai esperar reprovar pra tomar tenência nessa vida?",
+    "Ninguém vai te salvar, seu bosta! Faz o seu!",
+    "Treina nessa porra pra não passar vergonha no TAF!",
+    "Mantenha essa boca fechada e estuda em silêncio, caralho!",
+    "Zero desculpas hoje! Executa a missão, seu bisonho!",
+    "Você é fraco ou é polícia? Provoca essa porra hoje!",
+    "Cada hora perdida é um tiro no teu próprio pé!",
+    "Último dia do mês! Olhe no espelho e veja o bosta que foi ou o polícia que vai ser!"
+];
+  
 
-function iniciarApp(){
+document.addEventListener("DOMContentLoaded", () => {
+    iniciarApp();
+});
+
+function iniciarApp() {
     esconderSplash();
     carregarFrase();
     configurarCards();
@@ -12,297 +49,243 @@ function iniciarApp(){
     configurarCheckboxes();
     configurarCampos();
     configurarEstudo();
+    configurarNavegacaoTabs();
     atualizarPainel();
 }
 
-/*==================================================
- SPLASH
-==================================================*/
-function esconderSplash(){
-    const splash = document.getElementById("splash");
-    if(!splash) return;
+function esconderSplash() {
     setTimeout(() => {
-        splash.style.display = "none";
+        const splash = document.getElementById("splash");
+        if (splash) splash.style.display = "none";
     }, 2000);
 }
 
-/*==================================================
- FRASES MOTIVACIONAIS
-==================================================*/
-const frases = [
-    "O conforto é o inimigo da aprovação.",
-    "Enquanto você descansa alguém resolve mais 100 questões.",
-    "Dor é temporária. A farda é permanente.",
-    "Você pediu uma vida diferente. Trabalhe por ela.",
-    "Disciplina vence talento.",
-    "Sem desculpas.",
-    "Hoje é obrigatório evoluir.",
-    "Seu concorrente estudou enquanto você pensava em desistir.",
-    "Não negocie com a preguiça.",
-    "Você só perde quando para."
-];
-
-function carregarFrase(){
-    const quote = document.getElementById("quote");
-    if(!quote) return;
-    const dia = new Date().getDate();
-    quote.textContent = frases[dia % frases.length];
-}
-
-/*==================================================
- ABRIR E FECHAR CARD DE MISSÕES
-==================================================*/
-function configurarCards(){
-    const cards = document.querySelectorAll(".mission-card");
-    cards.forEach(card => {
-        const botao = card.querySelector(".mission-header");
-        if(botao){
-            botao.addEventListener("click", () => {
-                card.classList.toggle("open");
-            });
-        }
-    });
-}
-
-/*==================================================
- SISTEMA DE DIAS E RESET DIÁRIO
-==================================================*/
-const DATA_KEY = "operacao-pmesp-data";
-const DIA_INICIO_KEY = "operacao-pmesp-dia-inicio";
-
-function dataHoje(){
-    return new Date().toISOString().split("T")[0];
-}
-
-function verificarNovoDia(){
-    const ultimaData = localStorage.getItem(DATA_KEY);
-    const hoje = dataHoje();
-
-    // Se é a primeira vez rodando o app
-    if(!localStorage.getItem(DIA_INICIO_KEY)){
-        localStorage.setItem(DIA_INICIO_KEY, hoje);
-    }
-
-    if(!ultimaData){
-        localStorage.setItem(DATA_KEY, hoje);
-    } else if(ultimaData !== hoje){
-        localStorage.setItem(DATA_KEY, hoje);
-        resetarDia(); // Reseta os checkboxes para o novo dia
-    }
-
-    atualizarContadorDias();
-}
-
-function atualizarContadorDias(){
-    const inicioStr = localStorage.getItem(DIA_INICIO_KEY) || dataHoje();
-    const inicio = new Date(inicioStr);
-    const hoje = new Date(dataHoje());
-
-    const diferenca = hoje - inicio;
-    const dias = Math.floor(diferenca / 86400000) + 1; // 1 dia em ms = 86400000
-
-    const contador = document.getElementById("dayCounter");
-    if(contador){
-        contador.textContent = "DIA " + String(dias).padStart(3, "0");
+function carregarFrase() {
+    const quoteEl = document.getElementById("quote");
+    if (quoteEl) {
+        const fraseRandom = FRASES[Math.floor(Math.random() * FRASES.length)];
+        quoteEl.innerText = fraseRandom;
     }
 }
 
-function resetarDia(){
-    document.querySelectorAll(".task").forEach(check => {
-        check.checked = false;
-    });
-    salvar();
-    atualizarPainel();
-}
-
-/*==================================================
- LOCAL STORAGE (SALVAR E CARREGAR ESTADOS)
-==================================================*/
-function salvar(){
-    const dados = {
-        checks: {},
-        inputs: {}
-    };
-
-    document.querySelectorAll(".task").forEach((check, index) => {
-        dados.checks[index] = check.checked;
-    });
-
-    document.querySelectorAll("input[type='time'], input[type='number'], input[type='text'], textarea").forEach((campo, index) => {
-        dados.inputs[index] = campo.value;
-    });
-
-    localStorage.setItem("operacao-pmesp", JSON.stringify(dados));
-}
-
-function carregar(){
-    const dados = JSON.parse(localStorage.getItem("operacao-pmesp"));
-    if(!dados) return;
-
-    document.querySelectorAll(".task").forEach((check, index) => {
-        if(dados.checks[index] !== undefined){
-            check.checked = dados.checks[index];
-        }
-    });
-
-    document.querySelectorAll("input[type='time'], input[type='number'], input[type='text'], textarea").forEach((campo, index) => {
-        if(dados.inputs[index] !== undefined){
-            campo.value = dados.inputs[index];
-        }
-    });
-}
-
-/*==================================================
- CONFIGURAÇÃO DE LISTENERS (CHECKBOXES E INPUTS)
-==================================================*/
-function configurarCheckboxes(){
-    carregar();
-    document.querySelectorAll(".task").forEach(check => {
-        check.addEventListener("change", () => {
-            salvar();
-            atualizarPainel();
-            verificarConclusao();
+function configurarCards() {
+    const headers = document.querySelectorAll(".mission-header");
+    headers.forEach(header => {
+        header.addEventListener("click", () => {
+            const card = header.closest(".mission-card");
+            card.classList.toggle("open");
         });
     });
 }
 
-function configurarCampos(){
-    carregar();
-    document.querySelectorAll("input[type='time'], input[type='number'], input[type='text'], textarea").forEach(campo => {
-        campo.addEventListener("input", () => {
-            salvar();
+function verificarNovoDia() {
+    const hoje = new Date().toLocaleDateString("pt-BR");
+    const ultimoAcesso = localStorage.getItem("pmesp_data");
+
+    if (!ultimoAcesso) {
+        localStorage.setItem("pmesp_data", hoje);
+        localStorage.setItem("pmesp_dia", "1");
+    } else if (ultimoAcesso !== hoje) {
+        let diaAtual = parseInt(localStorage.getItem("pmesp_dia") || "1", 10);
+        diaAtual += 1;
+        localStorage.setItem("pmesp_dia", diaAtual.toString());
+        localStorage.setItem("pmesp_data", hoje);
+
+        // Reseta as tarefas diárias no novo dia
+        resetarDia();
+    }
+
+    const diaCounter = document.getElementById("dayCounter");
+    if (diaCounter) {
+        const dia = localStorage.getItem("pmesp_dia") || "1";
+        diaCounter.innerText = `DIA ${dia.padStart(3, "0")}`;
+    }
+}
+
+function resetarDia() {
+    const checkboxes = document.querySelectorAll(".task");
+    checkboxes.forEach(cb => {
+        cb.checked = false;
+    });
+
+    const inputsHoras = document.querySelectorAll("#tab-study input");
+    inputsHoras.forEach(inp => inp.value = "");
+
+    const obs = document.getElementById("observacoes");
+    if (obs) obs.value = "";
+
+    localStorage.setItem("pmesp_tasks", JSON.stringify([]));
+    localStorage.setItem("pmesp_horas", "0");
+    localStorage.setItem("pmesp_questoes", "0");
+}
+
+function configurarCheckboxes() {
+    const checkboxes = document.querySelectorAll(".task");
+    const salvas = JSON.parse(localStorage.getItem("pmesp_tasks") || "[]");
+
+    checkboxes.forEach((cb, index) => {
+        if (salvas.includes(index)) {
+            cb.checked = true;
+        }
+
+        cb.addEventListener("change", () => {
+            salvarCheckboxes();
+            atualizarProgresso();
             atualizarPainel();
+        });
+    });
+
+    atualizarProgresso();
+}
+
+function salvarCheckboxes() {
+    const checkboxes = document.querySelectorAll(".task");
+    const marcadas = [];
+
+    checkboxes.forEach((cb, index) => {
+        if (cb.checked) {
+            marcadas.push(index);
+        }
+    });
+
+    localStorage.setItem("pmesp_tasks", JSON.stringify(marcadas));
+}
+
+function atualizarProgresso() {
+    const checkboxes = document.querySelectorAll(".task");
+    const total = checkboxes.length;
+    let marcadas = 0;
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) marcadas++;
+    });
+
+    const porcentagem = total > 0 ? Math.round((marcadas / total) * 100) : 0;
+
+    const fill = document.getElementById("progressFill");
+    const text = document.getElementById("progressText");
+
+    if (fill) fill.style.width = `${porcentagem}%`;
+    if (text) text.innerText = `${porcentagem}%`;
+}
+
+function configurarCampos() {
+    const inputs = document.querySelectorAll("#tab-study input, #tab-study textarea");
+    inputs.forEach(input => {
+        const valorSalvo = localStorage.getItem(`pmesp_input_${input.id}`);
+        if (valorSalvo) input.value = valorSalvo;
+
+        input.addEventListener("input", () => {
+            localStorage.setItem(`pmesp_input_${input.id}`, input.value);
+            calcularTotalEstudos();
         });
     });
 }
 
-/*==================================================
- ESTUDOS DA MANHÃ
-==================================================*/
-const materias = [
-    "portugues",
-    "matematica",
-    "informatica",
-    "constitucional",
-    "legislacao"
-];
+function configurarEstudo() {
+    const btnSalvar = document.getElementById("salvarEstudo");
+    if (btnSalvar) {
+        btnSalvar.addEventListener("click", () => {
+            calcularTotalEstudos();
+            atualizarPainel();
+            alert("Progresso salvo com sucesso!");
+        });
+    }
+    calcularTotalEstudos();
+}
 
-function configurarEstudo(){
-    materias.forEach(id => {
-        const campo = document.getElementById(id);
-        if(campo){
-            campo.addEventListener("input", () => {
-                atualizarHoras();
-                atualizarPainel();
-            });
+function calcularTotalEstudos() {
+    const idsHoras = ["portugues", "matematica", "informatica", "constitucional", "legislacao"];
+    let totalHoras = 0;
+
+    idsHoras.forEach(id => {
+        const input = document.getElementById(id);
+        if (input && input.value) {
+            totalHoras += parseFloat(input.value) || 0;
         }
     });
 
-    const botao = document.getElementById("salvarEstudo");
-    if(botao){
+    const totalEl = document.getElementById("totalHoras");
+    if (totalEl) totalEl.innerText = `${totalHoras.toFixed(1)} horas`;
+
+    const questoesInput = document.getElementById("questoes");
+    const totalQuestoes = questoesInput ? (parseInt(questoesInput.value, 10) || 0) : 0;
+
+    localStorage.setItem("pmesp_horas", totalHoras.toString());
+    localStorage.setItem("pmesp_questoes", totalQuestoes.toString());
+}
+
+function configurarNavegacaoTabs() {
+    const botoes = document.querySelectorAll(".nav-btn");
+    const abas = document.querySelectorAll(".tab-content");
+
+    botoes.forEach(botao => {
         botao.addEventListener("click", () => {
-            salvar();
-            alert("Progresso de estudo salvo com sucesso!");
+            const tabAlvoId = botao.getAttribute("data-tab");
+
+            botoes.forEach(b => b.classList.remove("active"));
+            abas.forEach(a => a.classList.remove("active"));
+
+            botao.classList.add("active");
+            const abaAlvo = document.getElementById(tabAlvoId);
+            if (abaAlvo) {
+                abaAlvo.classList.add("active");
+            }
         });
-    }
-}
-
-function calcularHoras(){
-    let total = 0;
-    materias.forEach(id => {
-        const valor = Number(document.getElementById(id)?.value || 0);
-        total += valor;
     });
-    return total;
 }
 
-function atualizarHoras(){
-    const total = calcularHoras();
-    const totalHoras = document.getElementById("totalHoras");
-    if(totalHoras){
-        totalHoras.textContent = total.toFixed(1) + " horas";
-    }
+function atualizarPainel() {
+    const checkboxes = document.querySelectorAll(".task");
+    let marcadas = 0;
+    checkboxes.forEach(cb => {
+        if (cb.checked) marcadas++;
+    });
+
+    const missionsDone = document.getElementById("missionsDone");
+    if (missionsDone) missionsDone.innerText = `${marcadas}/${checkboxes.length}`;
+
+    const horas = parseFloat(localStorage.getItem("pmesp_horas") || "0");
+    const questoes = parseInt(localStorage.getItem("pmesp_questoes") || "0", 10);
+
+    const studyHours = document.getElementById("studyHours");
+    if (studyHours) studyHours.innerText = `${horas.toFixed(1)}h`;
+
+    const questionsDone = document.getElementById("questionsDone");
+    if (questionsDone) questionsDone.innerText = `${questoes}`;
+
+    // Cálculo de XP: 100 XP por missão + 50 XP por hora + 2 XP por questão
+    const xpTotalCalculado = (marcadas * 100) + Math.round(horas * 50) + (questoes * 2);
+
+    const xpTotal = document.getElementById("xpTotal");
+    const xpValue = document.getElementById("xpValue");
+
+    if (xpTotal) xpTotal.innerText = `${xpTotalCalculado}`;
+    if (xpValue) xpValue.innerText = `${xpTotalCalculado}`;
+
+    atualizarPatente(xpTotalCalculado);
 }
 
-/*==================================================
- PAINEL PRINCIPAL & ATUALIZAÇÃO DE MÉTRICAS / XP
-==================================================*/
-function atualizarPainel(){
-    const checks = document.querySelectorAll(".task");
-    const feitas = document.querySelectorAll(".task:checked").length;
-    const totalChecks = checks.length;
+function atualizarPatente(xp) {
+    const rankEl = document.getElementById("userRank");
+    const rankDesc = document.getElementById("rankDesc");
 
-    // 1. Atualizar Barra de Progresso
-    const porcentagem = totalChecks > 0 ? Math.round((feitas / totalChecks) * 100) : 0;
-    const barraFill = document.getElementById("progressFill");
-    if(barraFill){
-        barraFill.style.width = porcentagem + "%";
-    }
+    if (!rankEl || !rankDesc) return;
 
-    const textoProgresso = document.getElementById("progressText");
-    if(textoProgresso){
-        textoProgresso.textContent = porcentagem + "%";
-    }
-
-    // 2. Atualizar Relatório
-    const campoMissoes = document.getElementById("missionsDone");
-    if(campoMissoes){
-        campoMissoes.textContent = `${feitas}/${totalChecks}`;
-    }
-
-    const horasTotais = calcularHoras();
-    const campoHoras = document.getElementById("studyHours");
-    if(campoHoras){
-        campoHoras.textContent = horasTotais.toFixed(1) + "h";
-    }
-
-    const campoQuestoesVal = document.getElementById("questoes")?.value || 0;
-    const campoQuestoes = document.getElementById("questionsDone");
-    if(campoQuestoes){
-        campoQuestoes.textContent = campoQuestoesVal;
-    }
-
-    // 3. Cálculo Unificado de XP
-    let xpCalculado = 0;
-    xpCalculado += feitas * 10; // 10 XP por missão
-    xpCalculado += Math.floor(horasTotais * 25); // 25 XP por hora de estudo
-    xpCalculado += Math.floor(Number(campoQuestoesVal) / 10) * 5; // 5 XP a cada 10 questões
-
-    // 4. Exibir XP no Topo e no Relatório
-    const xpTopo = document.getElementById("xpValue");
-    if(xpTopo){
-        xpTopo.textContent = xpCalculado;
-    }
-
-    const xpRelatorio = document.getElementById("xpTotal");
-    if(xpRelatorio){
-        xpRelatorio.textContent = xpCalculado;
-    }
-}
-
-/*==================================================
- CONQUISTA DO DIA
-==================================================*/
-function verificarConclusao(){
-    const total = document.querySelectorAll(".task").length;
-    const feitas = document.querySelectorAll(".task:checked").length;
-
-    if(total === 0) return;
-
-    if(feitas === total){
-        if(localStorage.getItem("missao-concluida") === dataHoje()){
-            return;
-        }
-        localStorage.setItem("missao-concluida", dataHoje());
-        setTimeout(() => {
-            alert(
-`🚔 MISSÃO CONCLUÍDA!
-
-Você cumpriu 100% das tarefas de hoje.
-
-A farda é questão de tempo.
-Amanhã a batalha continua.`
-            );
-        }, 400);
+    if (xp >= 3000) {
+        rankEl.innerText = "Capitão";
+        rankDesc.innerText = "Sua disciplina é impecável. A aprovação é certa.";
+    } else if (xp >= 1500) {
+        rankEl.innerText = "Tenente";
+        rankDesc.innerText = "Excelente ritmo de preparação. Mantenha o foco!";
+    } else if (xp >= 500) {
+        rankEl.innerText = "Sargento";
+        rankDesc.innerText = "Evolução constante. O topo está próximo.";
+    } else if (xp >= 200) {
+        rankEl.innerText = "Soldado Engajado";
+        rankDesc.innerText = "Bom começo! A consistência traz a farda.";
+    } else {
+        rankEl.innerText = "Recruta";
+        rankDesc.innerText = "Acumule XP para subir de patente na corporação.";
     }
 }
